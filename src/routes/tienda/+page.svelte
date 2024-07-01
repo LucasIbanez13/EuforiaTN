@@ -96,20 +96,21 @@
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap -m-4">
           {#each ofertas as product}
-          <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="{product.PRODUCTO}" class="object-cover object-center w-full h-full block" src="{product.IMAGEN}">
+            <a href={`/tienda/producto/${product.ID}`} class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <div class="block relative h-48 rounded overflow-hidden">
+                <img alt="{product.PRODUCTO}" class="object-cover object-center w-full h-full block" src="{product.IMAGEN}">
+              </div>
+              <div class="mt-4">
+                <h2 class="text-gray-900 title-font text-lg font-medium">{product.PRODUCTO}</h2>
+                <p class="mt-1">{product.CATEGORY}</p>
+                <p class="mt-1">${product.PRECIO}</p>
+                <p class="mt-1">{product.DESCRIPCION}</p>
+              </div>
             </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">{product.PRODUCTO}</h2>
-              <p class="mt-1">{product.CATEGORY}</p>
-              <p class="mt-1">${product.PRECIO}</p>
-              <p class="mt-1">{product.DESCRIPCION}</p>
-            </div>
-          </div>
           {/each}
         </div>
       </div>
     </section>
+    
   </main>
   

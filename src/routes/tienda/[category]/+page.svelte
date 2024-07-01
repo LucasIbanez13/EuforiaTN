@@ -24,7 +24,7 @@
 
   // Función para manejar el clic en un producto
   function handleProductClick(productId) {
-    goto(`/producto/${productId}`); // Redirige a la vista del producto con su ID
+    goto(`/tienda/producto/${productId}`); // Redirige a la vista del producto con su ID
   }
 </script>
 
@@ -39,7 +39,7 @@
   
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-8 mx-auto">
-      <a href={`/tienda/${category.CATEGORY}`}>
+  
         {#if loading}
           <p>Cargando productos...</p> <!-- Mensaje de carga -->
         {:else}
@@ -62,7 +62,6 @@
             <p>No se encontraron productos para esta categoría.</p> <!-- Mensaje cuando no hay productos -->
           {/if}
         {/if}
-      </a>
       
     </div>
   </section>
