@@ -11,9 +11,17 @@
     }
   };
 
-  // Ejecutar solo en el cliente
+  const removeItem = (id) => {
+    cart.update(items => items.filter(item => item.ID !== id));
+  };
+
   onMount(() => {
     if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        cart.set(JSON.parse(storedCart));
+      }
+
       if ($showModal) {
         window.addEventListener('keydown', handleEsc);
       }
@@ -49,8 +57,9 @@
           {#if $cart.length > 0}
             <ul>
               {#each $cart as item}
-                <li class="mb-4">
+                <li class="mb-4 flex justify-between items-center">
                   <p class="text-sm text-gray-500">{item.PRODUCTO} - {item.quantity} x ${item.PRECIO}</p>
+                  <button on:click={() => removeItem(item.ID)} class="text-red-500">Eliminar</button>
                 </li>
               {/each}
             </ul>

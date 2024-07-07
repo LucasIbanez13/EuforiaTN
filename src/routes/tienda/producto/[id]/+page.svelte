@@ -1,33 +1,30 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
-  import { get, writable } from 'svelte/store'; // Asegúrate de importar 'writable'
+  import { get } from 'svelte/store';
   import Papa from 'papaparse';
-  import { goto } from '$app/navigation'; // Importa la función goto para la navegación
-  import { cart } from '$lib/stores/cartStore'; // Importa la tienda del carrito
+  import { goto } from '$app/navigation';
+  import { cart } from '$lib/stores/cartStore';
 
   let idProducts = [];
   let id = '';
-  let loading = true; // Variable para controlar el estado de carga
+  let loading = true;
 
   onMount(async () => {
-    id = get(page).params.id; // Obtén el parámetro 'id' de la ruta actual
+    id = get(page).params.id;
 
     const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTlLjf4fDHfmV_IbT957SY6Lq-o4xInxsRelXCI2HxChD19INdmlWGFQWndW77oiwkZL6Cu4WGP4585/pub?gid=0&single=true&output=csv');
     const data = await response.text();
     const products = Papa.parse(data, { header: true }).data;
 
-    // Filtrar productos por ID
     idProducts = products.filter(product => product.ID === id);
-    loading = false; // Cambiar el estado de carga cuando se hayan cargado los productos
+    loading = false;
   });
 
-  // Función para manejar el clic en un producto
   function handleProductClick(productId) {
-    goto(`/tienda/${id}/${productId}`); // Redirige a la vista del producto con su ID y el ID del producto
+    goto(`/tienda/${id}/${productId}`);
   }
 
-  // Función para agregar productos al carrito
   function addToCart(product) {
     cart.update(items => {
       const itemIndex = items.findIndex(item => item.ID === product.ID);
@@ -43,26 +40,14 @@
 
 </script>
 
-
 <main class="p-8 bg-gray-100 text-center">
   <header class="text-gray-600 body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <nav class="flex lg:w-2/5 items-center text-base md:ml-auto">
-        <div class="relative w-64">
-          <input type="text" class="w-full p-2 pl-8 pr-3 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar..." />
-        </div>
-      </nav>
-      <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Tailblocks</span>
-      </a>
-      
+      <a href="javascript:history.back()" class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">Volver</a>
     </div>
   </header>
   {#if loading}
-    <p>Cargando productos...</p> <!-- Mensaje de carga -->
+    <p>Cargando productos...</p>
   {:else}
     {#if idProducts.length > 0}
       <div class="flex justify-center">
@@ -87,8 +72,7 @@
         {/each}
       </div>
     {:else}
-      <p class="text-gray-600">No se encontraron productos para este ID: {id}</p> <!-- Mensaje cuando no hay productos -->
+      <p class="text-gray-600">No se encontraron productos para este ID: {id}</p>
     {/if}
   {/if}
 </main>
-
