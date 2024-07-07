@@ -1,4 +1,5 @@
 <script>
+  import NavBar from '$lib/components/nav/NavBar.svelte';
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { get } from 'svelte/store';
@@ -8,7 +9,7 @@
 
   let idProducts = [];
   let id = '';
-  let loading = true;
+  let loading = true; // Variable para controlar el estado de carga
 
   onMount(async () => {
     id = get(page).params.id;
@@ -18,13 +19,15 @@
     const products = Papa.parse(data, { header: true }).data;
 
     idProducts = products.filter(product => product.ID === id);
-    loading = false;
+    loading = false; // Cambiar el estado de carga cuando se hayan cargado los productos
   });
 
+  // Función para manejar el clic en un producto
   function handleProductClick(productId) {
-    goto(`/tienda/${id}/${productId}`);
+    goto(`/tienda/${id}/${productId}`); // Redirige a la vista del producto con su ID
   }
 
+  // Función para añadir el producto al carrito
   function addToCart(product) {
     cart.update(items => {
       const itemIndex = items.findIndex(item => item.ID === product.ID);
@@ -37,15 +40,17 @@
       }
     });
   }
-
 </script>
 
 <main class="p-8 bg-gray-100 text-center">
-  <header class="text-gray-600 body-font">
+  <NavBar />
+
+  <header class="text-gray-600 body-font pt-16">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <a href="javascript:history.back()" class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">Volver</a>
     </div>
   </header>
+
   {#if loading}
     <p>Cargando productos...</p>
   {:else}
