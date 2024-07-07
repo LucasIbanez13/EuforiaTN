@@ -1,6 +1,6 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { cart } from '$lib/stores/cartStore';
 
   export let showModal;
   export let toggleModal;
@@ -46,7 +46,17 @@
       <div class="mt-3 text-center">
         <h3 class="text-lg leading-6 font-medium text-gray-900">Carro</h3>
         <div class="mt-2 px-7 py-3">
-          <p class="text-sm text-gray-500">Aquí puedes ver tu carro de compras.</p>
+          {#if $cart.length > 0}
+            <ul>
+              {#each $cart as item}
+                <li class="mb-4">
+                  <p class="text-sm text-gray-500">{item.PRODUCTO} - {item.quantity} x ${item.PRECIO}</p>
+                </li>
+              {/each}
+            </ul>
+          {:else}
+            <p class="text-sm text-gray-500">Tu carrito está vacío.</p>
+          {/if}
         </div>
         <div class="items-center px-4 py-3">
           <button on:click={toggleModal} class="px-4 py-2 bg-indigo-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300">
