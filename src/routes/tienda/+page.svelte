@@ -58,7 +58,7 @@
                 <img alt="gallery" class="absolute inset-0 w-full h-full object-cover" src="{category.IMG}">
               </div>
               <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 hover:bg-opacity-0 transition duration-300">
-                <h2 class="text-white text-center text-sm">{category.CATEGORY}</h2>
+                <h2 class="text-white text-center text-sm uppercase">{category.CATEGORY}</h2>
               </div>
             </div>
           </a>

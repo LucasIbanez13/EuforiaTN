@@ -45,7 +45,7 @@
 <main class="p-8 bg-gray-100 text-center">
   <NavBar />
 
-  <header class="text-gray-600 body-font pt-16">
+  <header class="text-gray-600 body-font pt-2">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <a href="javascript:history.back()" class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">Volver</a>
     </div>
