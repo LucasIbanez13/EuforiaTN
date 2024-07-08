@@ -36,7 +36,7 @@
     const message = generateWhatsAppMessage(cartItems);
     const encodedMessage = encodeURIComponent(message);
     const phoneNumber = "tu-numero-de-telefono"; // Reemplaza con tu número de teléfono
-    const whatsappURL = `https://wa.me/${3814768844}?text=${encodedMessage}`;
+    const whatsappURL = `https://wa.me/${3812018090}?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
   };
 
