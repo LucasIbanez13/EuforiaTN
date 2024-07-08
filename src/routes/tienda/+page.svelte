@@ -46,34 +46,19 @@
 <main class="p-8 bg-gray-100 text-center">
   <NavBar />
 
-  <header class="text-gray-600 body-font pt-16"> <!-- Ajusta el padding top para evitar que la barra de navegación cubra el contenido -->
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <nav class="flex lg:w-2/5 items-center text-base md:ml-auto">
-        <div class="relative w-64">
-          <input type="text" class="w-full p-2 pl-8 pr-3 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar..." />
-        </div>
-      </nav>
-      <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Tailblocks</span>
-      </a>
-    </div>
-  </header>
-
+  
   <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap -m-4">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap justify-center">
         {#each categories as category}
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
+        <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
           <a href={`/tienda/${category.CATEGORY}`}>
-            <div class="flex relative">
-              <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="{category.IMG}">
-              <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
-                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">{category.CATEGORY}</h2>
-                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Alper Kamu</h1>
-                <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+            <div class="relative mx-auto" style="max-width: 450px; height: 150px;">
+              <div>
+                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover" src="{category.IMG}">
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 hover:bg-opacity-0 transition duration-300">
+                <h2 class="text-white text-center text-sm">{category.CATEGORY}</h2>
               </div>
             </div>
           </a>
@@ -82,6 +67,11 @@
       </div>
     </div>
   </section>
+  
+  
+  
+  
+  
 
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
