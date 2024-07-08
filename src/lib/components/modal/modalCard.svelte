@@ -21,7 +21,7 @@
       return "Mi carrito está vacío.";
     }
 
-    let message = "Holaa, me gustaría comprar los siguientes productos:\n\n";
+    let message = "Hola, me gustaría comprar los siguientes productos:\n\n";
     cartItems.forEach(item => {
       message += `Producto: ${item.PRODUCTO}\nCantidad: ${item.quantity}\nPrecio: $${item.PRECIO}\n\n`;
     });
